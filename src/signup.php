@@ -14,7 +14,6 @@
         
     } else{
         $password= md5($password);
-        $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
         insert_data($login, $password);
         header('Location:../index.php');
         $_SESSION['messege'] = 'Регистрация прошла успешно';
