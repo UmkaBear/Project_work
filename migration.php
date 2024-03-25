@@ -32,10 +32,14 @@ function restoreDatabaseTables($dbHost, $dbUsername, $dbPassword, $dbName, $file
     }
     return !empty($error)?$error:true;
 }
-$dbHost = 'mysqldb';
-$dbUsername = 'root';
-$dbPassword = 'root';
-$dbName = 'test';
+require(__DIR__.'/../vendor/autoload.php');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$mysqldb = $_ENV["DB_HOST"];
+$mysqldb_username = $_ENV["DB_LOGIN"];
+$pass = $_ENV["DB_PASSWORD"];
+$database = $_ENV["DB_BASE_NAME"];
 $filePath = 'sql/project_1.sql';
 
-restoreDatabaseTables($dbHost, $dbUsername, $dbPassword, $dbName, $filePath);
+restoreDatabaseTables($mysqldb, $mysqldb_username, $pass, $database, $filePath);

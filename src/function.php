@@ -1,8 +1,11 @@
 <?php
-
 require_once "connect.php";
 function insert_data($login, $password) {
-    $connect = mysqli_connect("mysqldb", "root", "root", "test");
+    $mysqldb = $_ENV["DB_HOST"];
+    $mysqldb_username = $_ENV["DB_LOGIN"];
+    $pass = $_ENV["DB_PASSWORD"];
+    $database = $_ENV["DB_BASE_NAME"];
+    $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
     if (!$connect) {
         die("Ошибка подключения к базе данных: " . mysqli_error($connect));
     }
@@ -12,7 +15,11 @@ function insert_data($login, $password) {
     }
 }
 function authenticate($login, $password) {
-    $connect = mysqli_connect("mysqldb", "root", "root", "test");
+    $mysqldb = $_ENV["DB_HOST"];
+    $mysqldb_username = $_ENV["DB_LOGIN"];
+    $pass = $_ENV["DB_PASSWORD"];
+    $database = $_ENV["DB_BASE_NAME"];
+    $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
     $check_user = mysqli_query($connect,"SELECT * FROM `user` WHERE `login` = '$login' AND `password` = '$password'");
     if (mysqli_num_rows($check_user)>0){
         header('Location:../workplace.php');
@@ -21,5 +28,6 @@ function authenticate($login, $password) {
         $_SESSION['messege'] = 'Неправильный логин или пароль';
     }
 }
+
 
 
