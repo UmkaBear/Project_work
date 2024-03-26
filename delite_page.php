@@ -1,7 +1,7 @@
 <?php
 session_start();
 $title = "Delite";
-require_once "src/connect.php";
+require(__DIR__ . '/./vendor/autoload.php');
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 }
