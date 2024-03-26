@@ -1,4 +1,20 @@
 <?php
+function delStudent()
+{
+    $mysqldb = $_ENV["DB_HOST"];
+    $mysqldb_username = $_ENV["DB_LOGIN"];
+    $pass = $_ENV["DB_PASSWORD"];
+    $database = $_ENV["DB_BASE_NAME"];
+    $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
+    if(isset($_GET['id']))
+    {
+        $id = $_GET['id'];
+
+        $query = "delete FROM `student`WHERE `id` = '$id'";
+        $result = mysqli_query($connect,$query);
+        header('Location:workplace.php');
+    } else echo "Ошибка";
+}
 function allTeacher()
 {
     $mysqldb = $_ENV["DB_HOST"];
