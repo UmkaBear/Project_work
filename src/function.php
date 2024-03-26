@@ -339,7 +339,7 @@ function show_students()
             echo '<td>' . $row['teacher'] . '</td>';
             echo '<td>' . $row['class'] . '</td>';
             echo '<td><a href="update_page.php?id=' . $row['id'] . '">Изменить</a></td>';
-            echo '<td><a href="del_page.php?id=' . $row['id'] . '">Удалить</a></td>';
+            echo '<td><a href="delite_page.php?id=' . $row['id'] . '">Удалить</a></td>';
             echo '</tr>';
         }
     } else {
