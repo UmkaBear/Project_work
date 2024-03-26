@@ -94,7 +94,7 @@ function delStudent()
 
         $query = "delete FROM `student`WHERE `id` = '$id'";
         $result = mysqli_query($connect, $query);
-        header('Location:workplace.php');
+        header('Location:/../workplace.php');
     } else echo "Ошибка";
 }
 

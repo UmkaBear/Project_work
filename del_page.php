@@ -25,7 +25,7 @@ if (isset($_GET['id'])) {
         <form class="form_1" action="" method="GET">
             <h1>Удалить ученика?</h1>
             <div class="content_form">
-                <a href="del.php?id=<?php echo $id; ?>">Подтвердить</a>
+                <a href="src/del.php?id=<?php echo $id; ?>">Подтвердить</a>
                 <a href="workplace.php" class="close">Закрыть окно</a>
             </div>
         </form>
