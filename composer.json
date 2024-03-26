@@ -1,5 +1,9 @@
 {
     "autoload": {
-    "files": ["src/function.php","src/connect.php"]
+    "files": ["src/function.php","src/connect.php"],
+    "psr-4": {
+            "db_function\\": "src/"
+        }
   }
+  
 }
