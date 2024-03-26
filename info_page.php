@@ -1,6 +1,6 @@
 <?php
 session_start();
-$title = "Doc";
+$title = "info_page";
 require_once "src/connect.php";
 require_once "src/function.php";
 

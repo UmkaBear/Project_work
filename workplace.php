@@ -21,7 +21,7 @@ require_once "src/function.php";
 <main>
     <div class="container">
         <div class="button_place">
-            <a class="button_p" href="doc.php">Отчет</a>
+            <a class="button_p" href="info_page.php">Отчет</a>
             <a class="button_p" href="#zatemnenie">Создать класс</a>
             <a class="button_p" href="#zatemnenie_2">Создать руководителя</a>
             <a class="button_p" href="#zatemnenie_3">Создать ученика</a>
