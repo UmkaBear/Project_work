@@ -2,6 +2,7 @@
     session_start();
     $title = "Admin";
     require_once "src/connect.php";
+    require_once "src/function.php";
 ?>
 
 <!DOCTYPE html>
@@ -41,22 +42,7 @@
                 </thead>
                 <tbody>
                     <?php
-                        $query = "select * from `student`";
-                        $result = mysqli_query($connect,$query);
-                        while($row = mysqli_fetch_assoc($result)){
-                            ?>
-                                <tr>
-                                    <td><?php echo $row['name']; ?></td>
-                                    <td><?php echo $row['lastname']; ?></td>
-                                    <td><?php echo $row['fathername']; ?></td>
-                                    <td><?php echo $row['date']; ?></td>
-                                    <td><?php echo $row['teacher']; ?></td>
-                                    <td><?php echo $row['class']; ?></td>
-                                    <td><a href="update_page.php?id=<?php echo $row['id']; ?>">Изменить</a></td>
-                                    <td><a href="del_page.php?id=<?php echo $row['id']; ?>">Удалить</a></td>
-                                </tr>
-                            <?php
-                        }
+                        show_students();
                     ?>
                 </tbody>
             </table>
@@ -96,16 +82,8 @@
             <div class="content_form">
                 <label for="teacher">Класс:</label>
                 <select name="class" id="">
-                <?php
-                        $query = "select * from `class`";
-                        $result = mysqli_query($connect,$query);
-                        while($row = mysqli_fetch_assoc($result)){
-                            ?>
-                                <option value="<?php echo $row['name']; ?>">
-                                    <?php echo $row['name']; ?></td>
-                                </option>
-                            <?php
-                        }
+                    <?php
+                        select_class($table_name);
                     ?>
                 </select>
             </div>
@@ -140,15 +118,7 @@
                 <label for="student">Руководитель:</label>
                 <select name="teacher" id="">
                     <?php
-                        $query = "select * from `teacher`";
-                        $result = mysqli_query($connect,$query);
-                        while($row = mysqli_fetch_assoc($result)){
-                            ?>
-                                <option value="<?php echo $row['lastname']; ?>">
-                                    <?php echo $row['lastname']; ?></td>
-                                </option>
-                            <?php
-                        }
+                        getTeacherList();
                     ?>
                 </select>
             </div>
@@ -156,15 +126,7 @@
                 <label for="student">Класс:</label>
                 <select name="class" id="">
                 <?php
-                        $query = "select * from `class`";
-                        $result = mysqli_query($connect,$query);
-                        while($row = mysqli_fetch_assoc($result)){
-                            ?>
-                                <option value="<?php echo $row['name']; ?>">
-                                    <?php echo $row['name']; ?></td>
-                                </option>
-                            <?php
-                        }
+                    select_rows();  
                     ?>
                 </select>
             </div>
