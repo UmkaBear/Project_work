@@ -12,12 +12,11 @@ function updateStudent()
     $database = $_ENV["DB_BASE_NAME"];
     $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
 
-    if(isset($_GET['id']))
-    {
+    if (isset($_GET['id'])) {
         $id = $_GET['id'];
 
         $query = "select * from `student` where `id` = '$id'";
-        $result = mysqli_query($connect,$query);
+        $result = mysqli_query($connect, $query);
         $row = mysqli_fetch_assoc($result);
         $classselect = $row['class'];
         $teacherselect = $row['teacher'];
@@ -25,9 +24,8 @@ function updateStudent()
     };
 
 
-
-    if(isset($_POST['update_student'])){
-        if(isset($_GET['id_new'])){
+    if (isset($_POST['update_student'])) {
+        if (isset($_GET['id_new'])) {
             $idnew = $_GET['id_new'];
         }
         $a_name = $_POST['name'];
@@ -37,12 +35,13 @@ function updateStudent()
         $a_teacher = $_POST['teacher'];
         $a_class = $_POST['class'];
         $query = "update `student` set `name`='$a_name',`lastname`='$a_lastname',`fathername`='$a_fathername',`date`='$a_date',`teacher`='$a_teacher',`class`='$a_class' where `id` = '$idnew'";
-        $result = mysqli_query($connect,$query);
+        $result = mysqli_query($connect, $query);
         header('Location:workplace.php');
 
     }
 
 }
+
 function classUpdate()
 {
     global $classselect;
@@ -52,16 +51,17 @@ function classUpdate()
     $database = $_ENV["DB_BASE_NAME"];
     $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
     $query = "select * from `class`";
-    $result = mysqli_query($connect,$query);
-    while($row = mysqli_fetch_assoc($result)){
+    $result = mysqli_query($connect, $query);
+    while ($row = mysqli_fetch_assoc($result)) {
         ?>
-        <option <?php if ($classselect == $row['name']) echo "selected";  ?> value="<?php echo $row['name']; ?>">
+        <option <?php if ($classselect == $row['name']) echo "selected"; ?> value="<?php echo $row['name']; ?>">
             <?php echo $row['name']; ?>
         </option>
 
         <?php
     }
 }
+
 function teacherStudent()
 {
     global $teacherselect;
@@ -71,15 +71,17 @@ function teacherStudent()
     $database = $_ENV["DB_BASE_NAME"];
     $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
     $query = "select * from `teacher`";
-    $result = mysqli_query($connect,$query);
-    while($row = mysqli_fetch_assoc($result)){
+    $result = mysqli_query($connect, $query);
+    while ($row = mysqli_fetch_assoc($result)) {
         ?>
-        <option <?php if ($teacherselect == $row['lastname']) echo "selected";  ?> value="<?php echo $row['lastname']; ?>">
+        <option <?php if ($teacherselect == $row['lastname']) echo "selected"; ?>
+                value="<?php echo $row['lastname']; ?>">
             <?php echo $row['lastname']; ?></td>
         </option>
         <?php
     }
 }
+
 function delStudent()
 {
     $mysqldb = $_ENV["DB_HOST"];
@@ -87,15 +89,15 @@ function delStudent()
     $pass = $_ENV["DB_PASSWORD"];
     $database = $_ENV["DB_BASE_NAME"];
     $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
-    if(isset($_GET['id']))
-    {
+    if (isset($_GET['id'])) {
         $id = $_GET['id'];
 
         $query = "delete FROM `student`WHERE `id` = '$id'";
-        $result = mysqli_query($connect,$query);
+        $result = mysqli_query($connect, $query);
         header('Location:workplace.php');
     } else echo "Ошибка";
 }
+
 function allTeacher()
 {
     $mysqldb = $_ENV["DB_HOST"];
@@ -104,10 +106,10 @@ function allTeacher()
     $database = $_ENV["DB_BASE_NAME"];
     $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
     $query = "SELECT * FROM `teacher`";
-    $result = mysqli_query($connect,$query);
-    while($row = mysqli_fetch_assoc($result)){
+    $result = mysqli_query($connect, $query);
+    while ($row = mysqli_fetch_assoc($result)) {
         $h = $row['lastname'];
-        $check_student_3 = mysqli_query($connect,"SELECT COUNT(*) AS student_count FROM `student` INNER JOIN `teacher` ON `student`.`teacher` = '$h'");
+        $check_student_3 = mysqli_query($connect, "SELECT COUNT(*) AS student_count FROM `student` INNER JOIN `teacher` ON `student`.`teacher` = '$h'");
         $student_3 = mysqli_fetch_assoc($check_student_3)['student_count'];
         $student_3 = $student_3;
         ?>
@@ -120,6 +122,7 @@ function allTeacher()
         <?php
     }
 }
+
 function minDate()
 {
     $mysqldb = $_ENV["DB_HOST"];
@@ -133,6 +136,7 @@ function minDate()
     $min_date = $row['min_date'];
     echo "Минимальная дата рождения ученика: " . $min_date;
 }
+
 function docInfo()
 {
     $mysqldb = $_ENV["DB_HOST"];
@@ -140,14 +144,16 @@ function docInfo()
     $pass = $_ENV["DB_PASSWORD"];
     $database = $_ENV["DB_BASE_NAME"];
     $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
-    $check_student = mysqli_query($connect,"SELECT * FROM `student`");
+    $check_student = mysqli_query($connect, "SELECT * FROM `student`");
     $allstudent = mysqli_num_rows($check_student);
-    $check_student_2 = mysqli_query($connect,"SELECT * FROM `student` where `class` > '1я' and `class` < '3а'");
+    $check_student_2 = mysqli_query($connect, "SELECT * FROM `student` where `class` > '1я' and `class` < '3а'");
     $student_2 = mysqli_num_rows($check_student_2);
     global $allstudent;
     global $student_2;
 }
-function restoreDatabaseTables($dbHost, $dbUsername, $dbPassword, $dbName, $filePath){
+
+function restoreDatabaseTables($dbHost, $dbUsername, $dbPassword, $dbName, $filePath)
+{
 
     $db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
 
@@ -159,27 +165,29 @@ function restoreDatabaseTables($dbHost, $dbUsername, $dbPassword, $dbName, $file
     $error = '';
 
 
-    foreach ($lines as $line){
+    foreach ($lines as $line) {
 
-        if(substr($line, 0, 2) == '--' || $line == ''){
+        if (substr($line, 0, 2) == '--' || $line == '') {
             continue;
         }
 
         $templine .= $line;
 
 
-        if (substr(trim($line), -1, 1) == ';'){
+        if (substr(trim($line), -1, 1) == ';') {
 
-            if(!$db->query($templine)){
+            if (!$db->query($templine)) {
                 $error .= 'Ошибка<b>' .
-                    $templine . '</b>": ' . $db->error . '<br /><br />'; }
+                    $templine . '</b>": ' . $db->error . '<br /><br />';
+            }
 
 
             $templine = '';
         }
     }
-    return !empty($error)?$error:true;
+    return !empty($error) ? $error : true;
 }
+
 function createDatabase()
 {
     $mysqldb = $_ENV["DB_HOST"];
@@ -201,6 +209,7 @@ function createDatabase()
 
     $conn->close();
 }
+
 function teacherCreate()
 {
     $mysqldb = $_ENV["DB_HOST"];
@@ -213,16 +222,17 @@ function teacherCreate()
     $fathername = $_POST["fathername"];
     $class = $_POST["class"];
 
-    if ($name == '' ){
+    if ($name == '') {
         $_SESSION['messege'] = 'Неверно введен учитель';
         header('Location:../workplace.php');
 
 
-    } else{
+    } else {
         mysqli_query($connect, "INSERT INTO `teacher` (`id`, `name`,`lastname`,`fathername`,`class`) VALUES (NULL, '$name','$lastname','$fathername','$class')");
         header('Location:../workplace.php');
     }
 }
+
 function studentCreate()
 {
     $mysqldb = $_ENV["DB_HOST"];
@@ -237,34 +247,38 @@ function studentCreate()
     $class = $_POST["class"];
     $teacher = $_POST["teacher"];
 
-    if ($name == '' ){
+    if ($name == '') {
         $_SESSION['messege'] = 'Неверно введен ученик';
         header('Location:../workplace.php');
 
 
-    } else{
+    } else {
         mysqli_query($connect, "INSERT INTO `student` (`id`, `name`, `lastname`, `fathername`, `date`, `teacher`, `class`) VALUES (NULL, '$name', '$lastname', '$fathername', '$date', '$teacher', '$class')");
         header('Location:../workplace.php');
     }
 }
-function classCreate(){
+
+function classCreate()
+{
     $mysqldb = $_ENV["DB_HOST"];
     $mysqldb_username = $_ENV["DB_LOGIN"];
     $pass = $_ENV["DB_PASSWORD"];
     $database = $_ENV["DB_BASE_NAME"];
     $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
     $name = $_POST["class"];
-    if ($name == '' ){
+    if ($name == '') {
         $_SESSION['messege'] = 'Неверно введен класс';
         header('Location:../workplace.php');
 
 
-    } else{
+    } else {
         mysqli_query($connect, "INSERT INTO `class` (`id`, `name`) VALUES (NULL, '$name')");
         header('Location:../workplace.php');
     }
 }
-function select_rows() {
+
+function select_rows()
+{
     $mysqldb = $_ENV["DB_HOST"];
     $mysqldb_username = $_ENV["DB_LOGIN"];
     $pass = $_ENV["DB_PASSWORD"];
@@ -276,32 +290,38 @@ function select_rows() {
         echo "<option value='" . $row['name'] . "'>" . $row['name'] . "</option>";
     }
 }
-function getTeacherList() {
+
+function getTeacherList()
+{
     $mysqldb = $_ENV["DB_HOST"];
     $mysqldb_username = $_ENV["DB_LOGIN"];
     $pass = $_ENV["DB_PASSWORD"];
     $database = $_ENV["DB_BASE_NAME"];
     $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
     $query = "select * from `teacher`";
-    $result = mysqli_query($connect,$query);
-    while($row = mysqli_fetch_assoc($result)){
-        echo "<option value='". $row['lastname'] ."'>". $row['lastname'] ."</option>";
+    $result = mysqli_query($connect, $query);
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<option value='" . $row['lastname'] . "'>" . $row['lastname'] . "</option>";
     }
 }
-function select_class($table_name) {
+
+function select_class($table_name)
+{
     $mysqldb = $_ENV["DB_HOST"];
     $mysqldb_username = $_ENV["DB_LOGIN"];
     $pass = $_ENV["DB_PASSWORD"];
     $database = $_ENV["DB_BASE_NAME"];
     $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
-        $query = "select * from `class`";
-        $result = mysqli_query($connect,$query);
+    $query = "select * from `class`";
+    $result = mysqli_query($connect, $query);
 
-        while($row = mysqli_fetch_assoc($result)){
-            echo '<option value="'.$row['name'].'">'.$row['name'].'</option>';
-        }
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo '<option value="' . $row['name'] . '">' . $row['name'] . '</option>';
+    }
 }
-function show_students() {
+
+function show_students()
+{
     $mysqldb = $_ENV["DB_HOST"];
     $mysqldb_username = $_ENV["DB_LOGIN"];
     $pass = $_ENV["DB_PASSWORD"];
@@ -328,19 +348,23 @@ function show_students() {
         echo '</tr>';
     }
 }
-function connectDB(){
+
+function connectDB()
+{
     $mysqldb = $_ENV["DB_HOST"];
     $mysqldb_username = $_ENV["DB_LOGIN"];
     $pass = $_ENV["DB_PASSWORD"];
     $database = $_ENV["DB_BASE_NAME"];
     $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
-    if(!$connect){
+    if (!$connect) {
         die("Ошибка подключения к базе данных");
     }
     global $connect;
     return $connect;
 }
-function insert_data($login, $password) {
+
+function insert_data($login, $password)
+{
     $mysqldb = $_ENV["DB_HOST"];
     $mysqldb_username = $_ENV["DB_LOGIN"];
     $pass = $_ENV["DB_PASSWORD"];
@@ -354,14 +378,16 @@ function insert_data($login, $password) {
         throw new Exception('Query failed.', mysqli_error($connect));
     }
 }
-function authenticate($login, $password) {
+
+function authenticate($login, $password)
+{
     $mysqldb = $_ENV["DB_HOST"];
     $mysqldb_username = $_ENV["DB_LOGIN"];
     $pass = $_ENV["DB_PASSWORD"];
     $database = $_ENV["DB_BASE_NAME"];
     $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
-    $check_user = mysqli_query($connect,"SELECT * FROM `user` WHERE `login` = '$login' AND `password` = '$password'");
-    if (mysqli_num_rows($check_user)>0){
+    $check_user = mysqli_query($connect, "SELECT * FROM `user` WHERE `login` = '$login' AND `password` = '$password'");
+    if (mysqli_num_rows($check_user) > 0) {
         header('Location:../workplace.php');
     } else {
         header('Location:../index.php');

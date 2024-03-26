@@ -1,6 +1,6 @@
 <?php
-    session_start();
-    $_SESSION['messege']='';
+session_start();
+$_SESSION['messege'] = '';
 ?>
 
 <!DOCTYPE html>
@@ -10,8 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title; ?></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="src/normalize.css">
     <link rel="stylesheet" type="text/css" href="src/style.css">
 </head>
@@ -26,10 +26,10 @@
         <button type="submit">Войти</button>
         <a href="register.php">Зарегистрироваться</a>
         <?php
-                if ($_SESSION['messege']){
-                    echo '<p class="msg"> '. $_SESSION['messege'] .'</p>';
-                }
-            unset ($_SESSION['messege']);
+        if ($_SESSION['messege']) {
+            echo '<p class="msg"> ' . $_SESSION['messege'] . '</p>';
+        }
+        unset ($_SESSION['messege']);
         ?>
     </form>
 </main>

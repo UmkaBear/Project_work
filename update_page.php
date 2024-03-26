@@ -1,14 +1,14 @@
 <?php
-    session_start();
-    $title = "Update";
-    require_once "src/connect.php";
-    require_once "src/function.php";
+session_start();
+$title = "Update";
+require_once "src/connect.php";
+require_once "src/function.php";
 
-    updateStudent();
-    global $row;
+updateStudent();
+global $row;
 
-    global $id;
-    ?>
+global $id;
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,31 +17,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title; ?></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="src/normalize.css">
     <link rel="stylesheet" type="text/css" href="src/style.css">
 </head>
 <body>
-    <main>
-      <div id="okno">
-        <form class="form_1" action="update_page.php?id_new=<?php echo $id?>" method="POST">
+<main>
+    <div id="okno">
+        <form class="form_1" action="update_page.php?id_new=<?php echo $id ?>" method="POST">
             <h1>Изменить ученика</h1>
-                <div class="content_form">
-                    <label for="student">Имя:</label>
-                    <input type="text" value="<?php echo $row['name']?>" name="name" placeholder="Введите имя">
-                </div>
-                <div class="content_form">
+            <div class="content_form">
+                <label for="student">Имя:</label>
+                <input type="text" value="<?php echo $row['name'] ?>" name="name" placeholder="Введите имя">
+            </div>
+            <div class="content_form">
                 <label for="student">Фамилия:</label>
-                <input type="text" value="<?php echo $row['lastname']?>" name="lastname"  placeholder="Введите фамилию">
+                <input type="text" value="<?php echo $row['lastname'] ?>" name="lastname" placeholder="Введите фамилию">
             </div>
             <div class="content_form">
                 <label for="student">Отчество:</label>
-                <input type="text" value="<?php echo $row['fathername']?>" name="fathername" placeholder="Введите отчество">
+                <input type="text" value="<?php echo $row['fathername'] ?>" name="fathername"
+                       placeholder="Введите отчество">
             </div>
             <div class="content_form">
                 <label for="student">Дата рождения:</label>
-                <input type="date" value="<?php echo $row['date']?>" name="date" placeholder="Введите дату рождения">
+                <input type="date" value="<?php echo $row['date'] ?>" name="date" placeholder="Введите дату рождения">
             </div>
             <div class="content_form">
                 <label for="student">Руководитель:</label>
@@ -54,8 +55,8 @@
             <div class="content_form">
                 <label for="student">Класс:</label>
                 <select name="class" id="">
-                <?php
-                classUpdate();
+                    <?php
+                    classUpdate();
                     ?>
                 </select>
             </div>
@@ -64,7 +65,7 @@
                 <a href="workplace.php" class="close">Закрыть окно</a>
             </div>
         </form>
-      </div>
-    </main>
+    </div>
+</main>
 </body>
 </html>

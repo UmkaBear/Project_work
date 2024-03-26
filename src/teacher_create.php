@@ -1,6 +1,4 @@
 <?php
-    require_once "connect.php";
-    require_once "function.php";
-    
-
-    teacherCreate();
+require_once "connect.php";
+require_once "function.php";
+teacherCreate();

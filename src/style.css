@@ -1,4 +1,4 @@
-body{
+body {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -9,37 +9,42 @@ body{
     color: #717171;
     height: 100vh;
 }
-.form_1{
+
+.form_1 {
     display: flex;
     flex-direction: column;
     width: 400px;
-    box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1),5px 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.2);
     padding: 10px;
     border-radius: 5px;
 }
-form h1{
+
+form h1 {
     text-align: center;
 }
-input{
+
+input {
     margin: 10px 0;
     border: unset;
     padding: 10px;
     border-bottom: 2px solid #e3e3e3;
     outline: none;
 }
-.content_form{
+
+.content_form {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    }
-select {
-        display: inline-block;
-        margin: 10px;
-        /* padding: 10px; */
-        min-width: 100px;
-    }
+}
 
-button{
+select {
+    display: inline-block;
+    margin: 10px;
+    /* padding: 10px; */
+    min-width: 100px;
+}
+
+button {
     padding: 10px;
     background-color: #e3e3e3;
     border: unset;
@@ -47,51 +52,56 @@ button{
     color: #717171;
 }
 
-.msg{
+.msg {
     border: 2px solid #f50000;
     border-radius: 3px;
     padding: 10px;
     text-align: center;
     font-weight: 700;
 }
-.container{
+
+.container {
     display: flex;
     flex-direction: column;
     width: 1200px;
-    box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1),5px 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1), 5px 5px 15px rgba(0, 0, 0, 0.2);
     padding: 10px;
     border-radius: 5px;
 }
+
 table {
-	width: 100%;
-	margin-bottom: 20px;
-	border: 15px solid #e3e3e3;
-	border-top: 5px solid #e3e3e3;
-	border-collapse: collapse; 
+    width: 100%;
+    margin-bottom: 20px;
+    border: 15px solid #e3e3e3;
+    border-top: 5px solid #e3e3e3;
+    border-collapse: collapse;
     text-align: center;
 }
+
 table th {
-	font-weight: bold;
-	padding: 5px;
-	background: #e3e3e3;
-	border: none;
-	border-bottom: 5px solid #e3e3e3;
+    font-weight: bold;
+    padding: 5px;
+    background: #e3e3e3;
+    border: none;
+    border-bottom: 5px solid #e3e3e3;
 }
+
 table td {
-	padding: 15px;
-	border: none;
-	border-bottom: 5px solid #e3e3e3;
+    padding: 15px;
+    border: none;
+    border-bottom: 5px solid #e3e3e3;
     border: 2px solid #e3e3e3;
 }
-.button_place{
-    color:#717171;
+
+.button_place {
+    color: #717171;
     text-decoration: none;
     padding: 5px 0;
     display: flex;
     justify-content: flex-end;
 }
 
-.button_place a{
+.button_place a {
     background-color: #e3e3e3;
     text-decoration: none;
     margin: 10px 0 10px 10px;
@@ -99,7 +109,8 @@ table td {
     color: #717171;
 
 }
-a{
+
+a {
     background-color: #e3e3e3;
     text-decoration: none;
     margin: 5px 0;
@@ -108,6 +119,7 @@ a{
     text-align: center;
 
 }
+
 #zatemnenie {
     background: #fff;
     width: 100%;
@@ -116,8 +128,9 @@ a{
     top: 0;
     left: 0;
     display: none;
-  }
-  #okno {
+}
+
+#okno {
     width: 300px;
     height: 500px;
     text-align: center;
@@ -132,18 +145,32 @@ a{
     bottom: 0;
     left: 0;
     margin: auto;
-  }
-  #zatemnenie:target {display: block;}
-  .close {
+}
+
+#zatemnenie:target {
+    display: block;
+}
+
+.close {
     display: inline-block;
     color: #717171;
     text-decoration: none;
     background: #e3e3e3;
-    cursor:pointer;
-  }
-.close:hover {background: #e6e6ff;}
-a:hover {background: #e6e6ff;}
-button:hover {background: #e6e6ff;}
+    cursor: pointer;
+}
+
+.close:hover {
+    background: #e6e6ff;
+}
+
+a:hover {
+    background: #e6e6ff;
+}
+
+button:hover {
+    background: #e6e6ff;
+}
+
 #zatemnenie_2 {
     background: #fff;
     width: 100%;
@@ -152,16 +179,21 @@ button:hover {background: #e6e6ff;}
     top: 0;
     left: 0;
     display: none;
-  }
-  #zatemnenie_2:target {display: block;}
-  .close {
+}
+
+#zatemnenie_2:target {
+    display: block;
+}
+
+.close {
     display: inline-block;
     color: #717171;
     text-decoration: none;
     background: #e3e3e3;
-    cursor:pointer;
-  }
-  #zatemnenie_3 {
+    cursor: pointer;
+}
+
+#zatemnenie_3 {
     background: #fff;
     width: 100%;
     height: 100%;
@@ -169,12 +201,16 @@ button:hover {background: #e6e6ff;}
     top: 0;
     left: 0;
     display: none;
-  }
-  #zatemnenie_3:target {display: block;}
-  .close {
+}
+
+#zatemnenie_3:target {
+    display: block;
+}
+
+.close {
     display: inline-block;
     color: #717171;
     text-decoration: none;
     background: #e3e3e3;
-    cursor:pointer;
-  }
+    cursor: pointer;
+}
