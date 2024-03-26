@@ -3,6 +3,7 @@ session_start();
 $title = "Admin";
 require_once "src/connect.php";
 require_once "src/function.php";
+$db_function_class = new db_function();
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +43,7 @@ require_once "src/function.php";
                 </thead>
                 <tbody>
                 <?php
-                show_students();
+                $db_function_class->show_students();
                 ?>
                 </tbody>
             </table>
@@ -83,7 +84,7 @@ require_once "src/function.php";
                     <label for="teacher">Класс:</label>
                     <select name="class" id="">
                         <?php
-                        select_class($table_name);
+                        $db_function_class->select_class($table_name);
                         ?>
                     </select>
                 </div>
@@ -118,7 +119,7 @@ require_once "src/function.php";
                     <label for="student">Руководитель:</label>
                     <select name="teacher" id="">
                         <?php
-                        getTeacherList();
+                        $db_function_class->getTeacherList();
                         ?>
                     </select>
                 </div>
@@ -126,7 +127,7 @@ require_once "src/function.php";
                     <label for="student">Класс:</label>
                     <select name="class" id="">
                         <?php
-                        select_rows();
+                        $db_function_class->select_rows();
                         ?>
                     </select>
                 </div>

@@ -3,8 +3,8 @@ session_start();
 $title = "info_page";
 require_once "src/connect.php";
 require_once "src/function.php";
-
-docInfo();
+$db_function_class = new db_function();
+$db_function_class->docInfo();
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +30,7 @@ docInfo();
             <p>Учеников 2-х классов: <?php echo $student_2 ?></p>
             <p>
                 <?php
-                minDate();
+                $db_function_class->minDate();
                 ?>
             </p>
             <p>Педогогический состав:</p>
@@ -47,7 +47,7 @@ docInfo();
                 </thead>
                 <tbody>
                 <?php
-                allTeacher();
+                $db_function_class->allTeacher();
                 ?>
                 </tbody>
             </table>

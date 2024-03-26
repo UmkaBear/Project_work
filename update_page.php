@@ -3,8 +3,8 @@ session_start();
 $title = "Update";
 require_once "src/connect.php";
 require_once "src/function.php";
-
-updateStudent();
+$db_function_class = new db_function();
+$db_function_class->updateStudent();
 global $row;
 
 global $id;
@@ -48,7 +48,7 @@ global $id;
                 <label for="student">Руководитель:</label>
                 <select name="teacher" id="">
                     <?php
-                    teacherStudent();
+                    $db_function_class->teacherStudent();
                     ?>
                 </select>
             </div>
@@ -56,7 +56,7 @@ global $id;
                 <label for="student">Класс:</label>
                 <select name="class" id="">
                     <?php
-                    classUpdate();
+                    $db_function_class->classUpdate();
                     ?>
                 </select>
             </div>
