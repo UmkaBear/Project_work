@@ -126,7 +126,7 @@
                 <label for="student">Класс:</label>
                 <select name="class" id="">
                 <?php
-                    select_rows();  
+                    select_rows();
                     ?>
                 </select>
             </div>

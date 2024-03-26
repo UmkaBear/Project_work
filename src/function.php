@@ -1,4 +1,67 @@
 <?php
+function teacherCreate()
+{
+    $mysqldb = $_ENV["DB_HOST"];
+    $mysqldb_username = $_ENV["DB_LOGIN"];
+    $pass = $_ENV["DB_PASSWORD"];
+    $database = $_ENV["DB_BASE_NAME"];
+    $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
+    $name = $_POST["name"];
+    $lastname = $_POST["lastname"];
+    $fathername = $_POST["fathername"];
+    $class = $_POST["class"];
+
+    if ($name == '' ){
+        $_SESSION['messege'] = 'Неверно введен учитель';
+        header('Location:../workplace.php');
+
+
+    } else{
+        mysqli_query($connect, "INSERT INTO `teacher` (`id`, `name`,`lastname`,`fathername`,`class`) VALUES (NULL, '$name','$lastname','$fathername','$class')");
+        header('Location:../workplace.php');
+    }
+}
+function studentCreate()
+{
+    $mysqldb = $_ENV["DB_HOST"];
+    $mysqldb_username = $_ENV["DB_LOGIN"];
+    $pass = $_ENV["DB_PASSWORD"];
+    $database = $_ENV["DB_BASE_NAME"];
+    $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
+    $name = $_POST["name"];
+    $lastname = $_POST["lastname"];
+    $fathername = $_POST["fathername"];
+    $date = $_POST["date"];
+    $class = $_POST["class"];
+    $teacher = $_POST["teacher"];
+
+    if ($name == '' ){
+        $_SESSION['messege'] = 'Неверно введен ученик';
+        header('Location:../workplace.php');
+
+
+    } else{
+        mysqli_query($connect, "INSERT INTO `student` (`id`, `name`, `lastname`, `fathername`, `date`, `teacher`, `class`) VALUES (NULL, '$name', '$lastname', '$fathername', '$date', '$teacher', '$class')");
+        header('Location:../workplace.php');
+    }
+}
+function classCreate(){
+    $mysqldb = $_ENV["DB_HOST"];
+    $mysqldb_username = $_ENV["DB_LOGIN"];
+    $pass = $_ENV["DB_PASSWORD"];
+    $database = $_ENV["DB_BASE_NAME"];
+    $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
+    $name = $_POST["class"];
+    if ($name == '' ){
+        $_SESSION['messege'] = 'Неверно введен класс';
+        header('Location:../workplace.php');
+
+
+    } else{
+        mysqli_query($connect, "INSERT INTO `class` (`id`, `name`) VALUES (NULL, '$name')");
+        header('Location:../workplace.php');
+    }
+}
 function select_rows() {
     $mysqldb = $_ENV["DB_HOST"];
     $mysqldb_username = $_ENV["DB_LOGIN"];
