@@ -1,4 +1,85 @@
 <?php
+
+function updateStudent()
+{
+    global $row;
+    global $id;
+    global $classselect;
+    global $teacherselect;
+    $mysqldb = $_ENV["DB_HOST"];
+    $mysqldb_username = $_ENV["DB_LOGIN"];
+    $pass = $_ENV["DB_PASSWORD"];
+    $database = $_ENV["DB_BASE_NAME"];
+    $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
+
+    if(isset($_GET['id']))
+    {
+        $id = $_GET['id'];
+
+        $query = "select * from `student` where `id` = '$id'";
+        $result = mysqli_query($connect,$query);
+        $row = mysqli_fetch_assoc($result);
+        $classselect = $row['class'];
+        $teacherselect = $row['teacher'];
+
+    };
+
+
+
+    if(isset($_POST['update_student'])){
+        if(isset($_GET['id_new'])){
+            $idnew = $_GET['id_new'];
+        }
+        $a_name = $_POST['name'];
+        $a_lastname = $_POST['lastname'];
+        $a_fathername = $_POST['fathername'];
+        $a_date = $_POST['date'];
+        $a_teacher = $_POST['teacher'];
+        $a_class = $_POST['class'];
+        $query = "update `student` set `name`='$a_name',`lastname`='$a_lastname',`fathername`='$a_fathername',`date`='$a_date',`teacher`='$a_teacher',`class`='$a_class' where `id` = '$idnew'";
+        $result = mysqli_query($connect,$query);
+        header('Location:workplace.php');
+
+    }
+
+}
+function classUpdate()
+{
+    global $classselect;
+    $mysqldb = $_ENV["DB_HOST"];
+    $mysqldb_username = $_ENV["DB_LOGIN"];
+    $pass = $_ENV["DB_PASSWORD"];
+    $database = $_ENV["DB_BASE_NAME"];
+    $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
+    $query = "select * from `class`";
+    $result = mysqli_query($connect,$query);
+    while($row = mysqli_fetch_assoc($result)){
+        ?>
+        <option <?php if ($classselect == $row['name']) echo "selected";  ?> value="<?php echo $row['name']; ?>">
+            <?php echo $row['name']; ?>
+        </option>
+
+        <?php
+    }
+}
+function teacherStudent()
+{
+    global $teacherselect;
+    $mysqldb = $_ENV["DB_HOST"];
+    $mysqldb_username = $_ENV["DB_LOGIN"];
+    $pass = $_ENV["DB_PASSWORD"];
+    $database = $_ENV["DB_BASE_NAME"];
+    $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
+    $query = "select * from `teacher`";
+    $result = mysqli_query($connect,$query);
+    while($row = mysqli_fetch_assoc($result)){
+        ?>
+        <option <?php if ($teacherselect == $row['lastname']) echo "selected";  ?> value="<?php echo $row['lastname']; ?>">
+            <?php echo $row['lastname']; ?></td>
+        </option>
+        <?php
+    }
+}
 function delStudent()
 {
     $mysqldb = $_ENV["DB_HOST"];
