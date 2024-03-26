@@ -1,4 +1,55 @@
 <?php
+function allTeacher()
+{
+    $mysqldb = $_ENV["DB_HOST"];
+    $mysqldb_username = $_ENV["DB_LOGIN"];
+    $pass = $_ENV["DB_PASSWORD"];
+    $database = $_ENV["DB_BASE_NAME"];
+    $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
+    $query = "SELECT * FROM `teacher`";
+    $result = mysqli_query($connect,$query);
+    while($row = mysqli_fetch_assoc($result)){
+        $h = $row['lastname'];
+        $check_student_3 = mysqli_query($connect,"SELECT COUNT(*) AS student_count FROM `student` INNER JOIN `teacher` ON `student`.`teacher` = '$h'");
+        $student_3 = mysqli_fetch_assoc($check_student_3)['student_count'];
+        $student_3 = $student_3;
+        ?>
+        <tr>
+            <td><?php echo $row['name']; ?></td>
+            <td><?php echo $row['lastname']; ?></td>
+            <td><?php echo $row['fathername']; ?></td>
+            <td><?php echo $student_3; ?></td>
+        </tr>
+        <?php
+    }
+}
+function minDate()
+{
+    $mysqldb = $_ENV["DB_HOST"];
+    $mysqldb_username = $_ENV["DB_LOGIN"];
+    $pass = $_ENV["DB_PASSWORD"];
+    $database = $_ENV["DB_BASE_NAME"];
+    $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
+    $sql = "SELECT MIN(date) AS min_date FROM student";
+    $result = mysqli_query($connect, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $min_date = $row['min_date'];
+    echo "Минимальная дата рождения ученика: " . $min_date;
+}
+function docInfo()
+{
+    $mysqldb = $_ENV["DB_HOST"];
+    $mysqldb_username = $_ENV["DB_LOGIN"];
+    $pass = $_ENV["DB_PASSWORD"];
+    $database = $_ENV["DB_BASE_NAME"];
+    $connect = mysqli_connect($mysqldb, $mysqldb_username, $pass, $database);
+    $check_student = mysqli_query($connect,"SELECT * FROM `student`");
+    $allstudent = mysqli_num_rows($check_student);
+    $check_student_2 = mysqli_query($connect,"SELECT * FROM `student` where `class` > '1я' and `class` < '3а'");
+    $student_2 = mysqli_num_rows($check_student_2);
+    global $allstudent;
+    global $student_2;
+}
 function restoreDatabaseTables($dbHost, $dbUsername, $dbPassword, $dbName, $filePath){
 
     $db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);

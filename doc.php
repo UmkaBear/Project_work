@@ -2,10 +2,9 @@
     session_start();
     $title = "Doc";
     require_once "src/connect.php";
-    $check_student = mysqli_query($connect,"SELECT * FROM `student`");
-    $allstudent = mysqli_num_rows($check_student);
-    $check_student_2 = mysqli_query($connect,"SELECT * FROM `student` where `class` > '1я' and `class` < '3а'");
-    $student_2 = mysqli_num_rows($check_student_2);
+    require_once "src/function.php";
+
+    docInfo();
 ?>
 
 <!DOCTYPE html>
@@ -31,11 +30,7 @@
             <p>Учеников 2-х классов: <?php echo $student_2 ?></p>
             <p>
                 <?php
-                    $sql = "SELECT MIN(date) AS min_date FROM student";
-                    $result = mysqli_query($connect, $sql);
-                    $row = mysqli_fetch_assoc($result);
-                    $min_date = $row['min_date'];
-                    echo "Минимальная дата рождения ученика: " . $min_date;
+                    minDate();
                 ?>
             </p>
             <p>Педогогический состав:</p>
@@ -51,23 +46,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                <?php
-                        $query = "SELECT * FROM `teacher`";
-                        $result = mysqli_query($connect,$query);
-                        while($row = mysqli_fetch_assoc($result)){
-                            $h = $row['lastname'];
-                            $check_student_3 = mysqli_query($connect,"SELECT COUNT(*) AS student_count FROM `student` INNER JOIN `teacher` ON `student`.`teacher` = '$h'");
-                            $student_3 = mysqli_fetch_assoc($check_student_3)['student_count'];
-                            $student_3 = $student_3;
-                            ?>
-                                <tr>
-                                    <td><?php echo $row['name']; ?></td>
-                                    <td><?php echo $row['lastname']; ?></td>
-                                    <td><?php echo $row['fathername']; ?></td>
-                                    <td><?php echo $student_3; ?></td>
-                                </tr>
-                            <?php
-                        }
+                    <?php
+                        allTeacher();
                     ?>
                 </tbody>
             </table>
