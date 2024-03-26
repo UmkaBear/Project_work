@@ -12,8 +12,8 @@ $_SESSION['messege'] = '';
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="src/normalize.css">
-    <link rel="stylesheet" type="text/css" href="src/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/normalize.css">
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
 </head>
 <body>
 <main>
